@@ -18,9 +18,16 @@ struct Category : OptionSet {
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
+    struct Size {
+        static let cameraHorizontalInset: CGFloat = 80
+        static let cameraBottomInset: CGFloat = 60
+        static let cameraTopInset: CGFloat = 32
+    }
     
     private var leftCircleControl: CircleControlNode?
     private var rightCircleControl: CircleControlNode?
+    private var timerLabel: SKLabelNode?
+    private var timer = Timer()
     private var leftCircleControlTouch: UITouch?
     private var rightCircleControlTouch: UITouch?
     private var deliveryman = Deliveryman(position: .zero)
@@ -31,6 +38,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func didMove(to view: SKView) {
         addCamera()
         addCircleControls()
+        addTimer()
         addChild(deliveryman)
         addChild(Customer(position: .zero))
         physicsWorld.contactDelegate = self
@@ -129,20 +137,38 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     private func addCircleControls() {
-        let horizontalInset: CGFloat = 80
-        let bottomInset: CGFloat = 60
+
         let controlRadius: CGFloat = 70
         let leftCircleControl = CircleControlNode.defaultControl(radius: controlRadius)
-        leftCircleControl.position = CGPoint(x: -size.width / 2 + controlRadius + horizontalInset,
-                                             y: -size.height / 2 + controlRadius + bottomInset)
+        leftCircleControl.position = CGPoint(x: -size.width / 2 + controlRadius + Size.cameraHorizontalInset,
+                                             y: -size.height / 2 + controlRadius + Size.cameraBottomInset)
         camera?.addChild(leftCircleControl)
         self.leftCircleControl = leftCircleControl
 
         let rightCircleControl = CircleControlNode.defaultControl(radius: controlRadius)
-        rightCircleControl.position = CGPoint(x: size.width / 2 - controlRadius - horizontalInset,
-                                              y: -size.height / 2 + controlRadius + bottomInset)
+        rightCircleControl.position = CGPoint(x: size.width / 2 - controlRadius - Size.cameraHorizontalInset,
+                                              y: -size.height / 2 + controlRadius + Size.cameraBottomInset)
         camera?.addChild(rightCircleControl)
         self.rightCircleControl = rightCircleControl
+    }
+
+    private func addTimer() {
+        let topInset: CGFloat = 20
+        let timerWidth: CGFloat = 100
+
+        let timerLabel = SKLabelNode(text: "00:00:00")
+        timerLabel.verticalAlignmentMode = .center
+        timerLabel.horizontalAlignmentMode = .center
+        timerLabel.color = .yellow
+        timerLabel.fontSize = 64
+        print("x: \(Size.cameraHorizontalInset + timerWidth / 2)")
+        print("y: \(size.height / 2 - Size.cameraBottomInset)")
+
+        timerLabel.position = CGPoint(x: 0,
+                                      y: size.height / 2 - Size.cameraTopInset)
+
+        camera?.addChild(timerLabel)
+        self.timerLabel = timerLabel
     }
     
     private func shoot() {
@@ -156,4 +182,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addChild(ragdoll)
     }
 
+    @objc func roundTimerFired(_ timer: Timer) {
+
+    }
 }
