@@ -44,8 +44,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addCircleControls()
         addTimer()
         addDeliveryCounter()
-        addChild(deliveryman)
-        addChild(Customer(position: .zero))
         spawnCustomers()
         spawnDeliveryman()
         physicsWorld.contactDelegate = self
