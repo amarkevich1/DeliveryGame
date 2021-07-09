@@ -35,7 +35,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var moveVector = CGVector()
     private var rotateAngle: CGFloat = 0
     private let removingDelay: TimeInterval = 0.3
-    private let customersQuantity = 1
+    private let customersQuantity = 10
     var endGameDelegate: GameViewControllerDelegate?
 
     private var customers: [Customer] = []
