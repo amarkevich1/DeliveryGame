@@ -1,9 +1,16 @@
 import SpriteKit
 
 extension SKNode {
-    func removeFromParent(afterDelay delay: TimeInterval) {
+    func fadeOutSlowDownAndRemoveFromParent(afterDelay delay: TimeInterval) {
         DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: { [weak self] in
-            self?.removeFromParent()
+            self?.fadeOutAndRemove()
         })
+    }
+    
+    private func fadeOutAndRemove() {
+        let fadeOutAction = SKAction.fadeOut(withDuration: 2.0)
+        let remove = SKAction.run({ removeFromParent }())
+        let sequence = SKAction.sequence([fadeOutAction, remove])
+        run(sequence)
     }
 }
