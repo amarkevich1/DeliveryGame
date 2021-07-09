@@ -139,8 +139,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // MARK: - Private methods
 
     private func endGame() {
-        endGameDelegate?.endGame(points: timerCounter)
+        let result = timerCounter
         stopTimer()
+        showWinMessage()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
+            self?.endGameDelegate?.endGame(points: result)
+        }
     }
     
     private func addCamera() {
@@ -227,7 +231,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     private func stopTimer() {
         timer.invalidate()
-        timerCounter = 0
     }
 
     @objc func roundTimerFired(_ timer: Timer) {
@@ -271,6 +274,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         points.append(CGPoint(x: position.x, y: position.y - 90))
         
         return !points.contains(where: { nodes(at: $0).contains(where: { $0.physicsBody != nil }) })
+    }
+    
+    private func showWinMessage() {
+        let backgroundNode = SKShapeNode(rectOf: size)
+        backgroundNode.fillColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.5809736441)
+        backgroundNode.strokeColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.5809736441)
+        backgroundNode.position = .zero
+        camera?.addChild(backgroundNode)
+        
+        let label = SKLabelNode()
+        label.position = .zero
+        label.fontSize = 100
+        label.horizontalAlignmentMode = .center
+        label.verticalAlignmentMode = .center
+        label.numberOfLines = 0
+        label.text = String(format: "WIN!!!\nTime: %.1f", timerCounter)
+
+        camera?.addChild(label)
     }
 
 }

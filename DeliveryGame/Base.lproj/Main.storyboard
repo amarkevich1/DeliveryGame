@@ -17,43 +17,41 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xAE-nc-x6Z">
-                                <rect key="frame" x="416" y="182.5" width="64" height="49"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <rect key="frame" x="431" y="192" width="34" height="30"/>
                                 <state key="normal" title="Start">
-                                    <color key="titleColor" systemColor="systemRedColor"/>
+                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="startButtonDidPress:" destination="K9c-3H-nJK" eventType="touchUpInside" id="KQ6-zq-Ews"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LQn-DA-HjP">
-                                <rect key="frame" x="498.5" y="20" width="19.5" height="37"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
-                                <color key="textColor" systemColor="systemRedColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LQn-DA-HjP">
+                                <rect key="frame" x="474" y="20" width="8" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Best Time:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iBz-gL-B06">
-                                <rect key="frame" x="348.5" y="20" width="140" height="37"/>
-                                <color key="tintColor" systemColor="systemRedColor"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
-                                <color key="textColor" systemColor="systemRedColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iBz-gL-B06">
+                                <rect key="frame" x="415" y="20" width="49" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="pOd-cM-qnP"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="LQn-DA-HjP" firstAttribute="top" secondItem="pOd-cM-qnP" secondAttribute="top" constant="20" id="5ZP-nS-CEp"/>
                             <constraint firstItem="LQn-DA-HjP" firstAttribute="leading" secondItem="iBz-gL-B06" secondAttribute="trailing" constant="10" id="PUj-zm-c4u"/>
                             <constraint firstItem="xAE-nc-x6Z" firstAttribute="centerY" secondItem="mYD-x3-r9j" secondAttribute="centerY" id="Xz9-1i-TJy"/>
                             <constraint firstItem="iBz-gL-B06" firstAttribute="centerY" secondItem="LQn-DA-HjP" secondAttribute="centerY" id="cIu-Br-dNI"/>
-                            <constraint firstItem="LQn-DA-HjP" firstAttribute="centerX" secondItem="mYD-x3-r9j" secondAttribute="centerX" constant="60" id="qqs-p4-nFC"/>
+                            <constraint firstItem="LQn-DA-HjP" firstAttribute="centerX" secondItem="mYD-x3-r9j" secondAttribute="centerX" constant="30" id="qqs-p4-nFC"/>
                             <constraint firstItem="xAE-nc-x6Z" firstAttribute="centerX" secondItem="mYD-x3-r9j" secondAttribute="centerX" id="zJr-o2-kag"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Qei-Gz-Tpn"/>
                     <connections>
-                        <outlet property="highScoreLabel" destination="LQn-DA-HjP" id="3Ps-pk-JSZ"/>
+                        <outlet property="highScoreLabel" destination="LQn-DA-HjP" id="d5e-Pg-tWT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xDI-9H-Ao8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -95,9 +93,6 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
