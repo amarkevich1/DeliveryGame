@@ -22,7 +22,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var leftCircleControl: CircleControlNode?
     private var rightCircleControl: CircleControlNode?
     private var leftCircleControlTouch: UITouch?
-    private var rightCircleControlTouch: UITouch?
     private var deliveryman = Deliveryman(position: .zero)
     private var moveVector = CGVector()
     private var rotateAngle: CGFloat = 0
@@ -41,9 +40,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let location = touch.location(in: self)
             if atPoint(location) == leftCircleControl {
                 leftCircleControlTouch = touch
+                guard let circleNode = leftCircleControl else { return }
+                let vector = circleNode.getVector(point: location)
+                let angle = atan2(vector.dy, vector.dx) - CGFloat.pi / 2
+                rotateAngle = angle
             } else if atPoint(location) == rightCircleControl {
-                rightCircleControlTouch = touch
-            } else {
                 shoot()
             }
         }
@@ -54,10 +55,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let location = touch.location(in: circleNode)
             let vector = circleNode.getVector(point: location)
             moveVector = vector
-        }
-        if let touch = rightCircleControlTouch, touches.contains(touch), let circleNode = rightCircleControl {
-            let location = touch.location(in: circleNode)
-            let vector = circleNode.getVector(point: location)
             let angle = atan2(vector.dy, vector.dx) - CGFloat.pi / 2
             rotateAngle = angle
         }
@@ -68,10 +65,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
            touches.contains(leftCircleControlTouch) {
             self.leftCircleControlTouch = nil
             moveVector = .zero
-        }
-        if let rightCircleControlTouch = rightCircleControlTouch,
-           touches.contains(rightCircleControlTouch) {
-            self.rightCircleControlTouch = nil
         }
     }
     
