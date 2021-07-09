@@ -2,7 +2,7 @@ import SpriteKit
 
 extension SKNode {
     func fadeOutSlowDownAndRemoveFromParent(afterDelay delay: TimeInterval) {
-        physicsBody?.linearDamping = 0.8
+        physicsBody?.linearDamping = 8
         removeAllActions()
         DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: { [weak self] in
             self?.fadeOutAndRemove()
@@ -10,7 +10,7 @@ extension SKNode {
     }
     
     private func fadeOutAndRemove() {
-        let fadeOutAction = SKAction.fadeOut(withDuration: 2.0)
+        let fadeOutAction = SKAction.fadeOut(withDuration: 0.5)
         let remove = SKAction.run({ removeFromParent }())
         let sequence = SKAction.sequence([fadeOutAction, remove])
         run(sequence)

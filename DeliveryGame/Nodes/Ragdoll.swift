@@ -57,8 +57,8 @@ final class Ragdoll: CompositeNode {
         let leftArmBottomPart = SKShapeNode(rectOf: armBottomPartSize)
         leftArmBottomPart.position = CGPoint(x: leftArmTopPart.position.x,
                                              y: leftArmTopPart.position.y - Size.armTopPartHeight / 2 - Size.armBottomPartHeight / 2)
-        leftArmBottomPart.fillColor = bodyColor
-        leftArmBottomPart.strokeColor = bodyColor
+        leftArmBottomPart.fillColor = skinTone
+        leftArmBottomPart.strokeColor = skinTone
         leftArmBottomPart.physicsBody = SKPhysicsBody(rectangleOf: armBottomPartSize)
         
         let leftArmTopPartAndLeftArmBottomPartJoint = SKPhysicsJointPin.joint(
@@ -83,8 +83,8 @@ final class Ragdoll: CompositeNode {
         let rightArmBottomPart = SKShapeNode(rectOf: armBottomPartSize)
         rightArmBottomPart.position = CGPoint(x: rightArmTopPart.position.x,
                                               y: rightArmTopPart.position.y - Size.armTopPartHeight / 2 - Size.armBottomPartHeight / 2)
-        rightArmBottomPart.fillColor = bodyColor
-        rightArmBottomPart.strokeColor = bodyColor
+        rightArmBottomPart.fillColor = skinTone
+        rightArmBottomPart.strokeColor = skinTone
         rightArmBottomPart.physicsBody = SKPhysicsBody(rectangleOf: armBottomPartSize)
         
         let rightArmTopPartAndRightArmBottomPartJoint = SKPhysicsJointPin.joint(
@@ -175,6 +175,6 @@ final class Ragdoll: CompositeNode {
                          bodyAndRightLegTopPartJoint,
                          rightLegTopPartAndRightLegBottomPartJoint]
         
-        for node in arrayOfNodes { node.physicsBody?.linearDamping = 0.5 }
+        for node in arrayOfNodes { node.physicsBody?.linearDamping = 0.9 }
     }
 }
