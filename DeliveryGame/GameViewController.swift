@@ -14,6 +14,8 @@ protocol GameViewControllerDelegate {
 }
 
 class GameViewController: UIViewController {
+    
+    var delegate: GameViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +62,7 @@ class GameViewController: UIViewController {
 
 extension GameViewController: GameViewControllerDelegate {
     func endGame(points: Double) {
-     //   <#code#>
+        navigationController?.popToRootViewController(animated: true)
+        delegate?.endGame(points: points)
     }
 }
