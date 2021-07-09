@@ -93,6 +93,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 customer = contact.bodyA.node as? SKShapeNode
             }
             pizza?.fadeOutSlowDownAndRemoveFromParent(afterDelay: removingDelay)
+            
             customer?.removeFromParent()
 
             customers.removeAll{ $0.mainNode == customer! }
@@ -161,7 +162,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private func spawnCustomers() {
         while (customers.count < 10) {
             let position = getRandomPosition()
-            if !nodes(at: position).contains(where: { $0.physicsBody != nil }) {
+            if verifyPositionForCustomer(position: position) {
                 let customer = Customer(position: position)
                 addChild(customer)
                 customers.append(customer)
@@ -177,6 +178,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     private func spawnDeliveryman() {
         addChild(deliveryman)
+    }
+    
+    private func verifyPositionForCustomer(position: CGPoint) -> Bool {
+        var points = [position]
+        points.append(CGPoint(x: position.x, y: position.y + 10))
+        points.append(CGPoint(x: position.x, y: position.y - 10))
+        points.append(CGPoint(x: position.x, y: position.y - 20))
+        points.append(CGPoint(x: position.x, y: position.y - 30))
+        points.append(CGPoint(x: position.x, y: position.y - 40))
+        points.append(CGPoint(x: position.x, y: position.y - 50))
+        points.append(CGPoint(x: position.x, y: position.y - 60))
+        points.append(CGPoint(x: position.x, y: position.y - 70))
+        points.append(CGPoint(x: position.x, y: position.y - 80))
+        points.append(CGPoint(x: position.x, y: position.y - 90))
+        
+        return !points.contains(where: { nodes(at: $0).contains(where: { $0.physicsBody != nil }) })
     }
 
 }
