@@ -161,6 +161,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private func spawnCustomers() {
         for _ in 1...customersQuantity {
             let customer = Customer(position: getRandomPosition())
+            customer.mainNode.zRotation = CGFloat(Double.random(in: 0...Double.pi))
             addChild(customer)
             customers.append(customer)
         }

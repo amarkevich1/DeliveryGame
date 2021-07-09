@@ -25,6 +25,7 @@
 		59FFCD9126986052000B8940 /* SKNode+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59FFCD9026986052000B8940 /* SKNode+Extensions.swift */; };
 		5B5541D126987043004A6279 /* Slice_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B5541D026987043004A6279 /* Slice_logo.png */; };
 		5B5541D326987DF9004A6279 /* CGRect+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5541D226987DF9004A6279 /* CGRect+Extensions.swift */; };
+		5B5541D7269892B7004A6279 /* PersonAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5541D6269892B7004A6279 /* PersonAppearance.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		59FFCD9026986052000B8940 /* SKNode+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKNode+Extensions.swift"; sourceTree = "<group>"; };
 		5B5541D026987043004A6279 /* Slice_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Slice_logo.png; sourceTree = "<group>"; };
 		5B5541D226987DF9004A6279 /* CGRect+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Extensions.swift"; sourceTree = "<group>"; };
+		5B5541D6269892B7004A6279 /* PersonAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonAppearance.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 				59A4B01B2694C1FE005DB9F7 /* Assets.xcassets */,
 				59A4B01D2694C1FE005DB9F7 /* Info.plist */,
 				5967F77A26973913006C377F /* LaunchScreen.storyboard */,
+				5B5541D6269892B7004A6279 /* PersonAppearance.swift */,
 			);
 			path = DeliveryGame;
 			sourceTree = "<group>";
@@ -204,6 +207,7 @@
 				5B5541D326987DF9004A6279 /* CGRect+Extensions.swift in Sources */,
 				5967F783269752B1006C377F /* Customer.swift in Sources */,
 				595856DE269721E200390645 /* CircleControl.swift in Sources */,
+				5B5541D7269892B7004A6279 /* PersonAppearance.swift in Sources */,
 				59A4B0152694C1FC005DB9F7 /* GameScene.swift in Sources */,
 				59A4B0172694C1FC005DB9F7 /* GameViewController.swift in Sources */,
 				59A4B00F2694C1FC005DB9F7 /* AppDelegate.swift in Sources */,
