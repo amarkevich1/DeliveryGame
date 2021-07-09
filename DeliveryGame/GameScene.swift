@@ -18,9 +18,18 @@ struct Category : OptionSet {
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
+    struct Size {
+        static let cameraHorizontalInset: CGFloat = 80
+        static let cameraBottomInset: CGFloat = 60
+        static let cameraTopInset: CGFloat = 32
+    }
     
     private var leftCircleControl: CircleControlNode?
     private var rightCircleControl: CircleControlNode?
+    private var timerLabel: SKLabelNode?
+    private var customersCounterLabel: SKLabelNode?
+    private var timer = Timer()
+    private var timerCounter: Double = 0
     private var leftCircleControlTouch: UITouch?
     private var deliveryman = Deliveryman(position: .zero)
     private var moveVector = CGVector()
@@ -33,9 +42,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func didMove(to view: SKView) {
         addCamera()
         addCircleControls()
+        addTimer()
+        addDeliveryCounter()
         spawnCustomers()
         spawnDeliveryman()
         physicsWorld.contactDelegate = self
+
+        startTimer()
+        updateCustomersCounter()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -98,7 +112,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
             customers.removeAll{ $0.mainNode == customer! }
             if customers.isEmpty {
-                print("EMPTY")
+                endGame()
             }
 
             addFallenCustomer(color: customer?.fillColor ?? .black,
@@ -111,9 +125,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 contact.bodyB.node?.fadeOutSlowDownAndRemoveFromParent(afterDelay: removingDelay)
             }
         }
+        updateCustomersCounter()
     }
     
     // MARK: - Private methods
+
+    private func endGame() {
+        stopTimer()
+        let points = timerCounter
+    }
     
     private func addCamera() {
         let camera = SKCameraNode()
@@ -132,20 +152,46 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     private func addCircleControls() {
-        let horizontalInset: CGFloat = 80
-        let bottomInset: CGFloat = 60
+
         let controlRadius: CGFloat = 70
         let leftCircleControl = CircleControlNode.defaultControl(radius: controlRadius)
-        leftCircleControl.position = CGPoint(x: -size.width / 2 + controlRadius + horizontalInset,
-                                             y: -size.height / 2 + controlRadius + bottomInset)
+        leftCircleControl.position = CGPoint(x: -size.width / 2 + controlRadius + Size.cameraHorizontalInset,
+                                             y: -size.height / 2 + controlRadius + Size.cameraBottomInset)
         camera?.addChild(leftCircleControl)
         self.leftCircleControl = leftCircleControl
 
         let rightCircleControl = CircleControlNode.defaultControl(radius: controlRadius)
-        rightCircleControl.position = CGPoint(x: size.width / 2 - controlRadius - horizontalInset,
-                                              y: -size.height / 2 + controlRadius + bottomInset)
+        rightCircleControl.position = CGPoint(x: size.width / 2 - controlRadius - Size.cameraHorizontalInset,
+                                              y: -size.height / 2 + controlRadius + Size.cameraBottomInset)
         camera?.addChild(rightCircleControl)
         self.rightCircleControl = rightCircleControl
+    }
+
+    private func addTimer() {
+        let timerLeftInset: CGFloat = 30
+        let timerLabel = SKLabelNode()
+        timerLabel.verticalAlignmentMode = .top
+        timerLabel.horizontalAlignmentMode = .left
+        timerLabel.fontSize = 64
+
+        timerLabel.position = CGPoint(x: -timerLeftInset,
+                                      y: size.height / 2 - Size.cameraTopInset)
+
+        camera?.addChild(timerLabel)
+        self.timerLabel = timerLabel
+    }
+
+    private func addDeliveryCounter() {
+        let deliveryCounter = SKLabelNode()
+        deliveryCounter.verticalAlignmentMode = .top
+        deliveryCounter.horizontalAlignmentMode = .right
+        deliveryCounter.fontSize = 56
+
+        deliveryCounter.position = CGPoint(x: size.width / 2 - Size.cameraHorizontalInset / 2,
+                                      y: size.height / 2 - Size.cameraTopInset)
+
+        camera?.addChild(deliveryCounter)
+        self.customersCounterLabel = deliveryCounter
     }
     
     private func shoot() {
@@ -159,6 +205,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addChild(ragdoll)
     }
 
+    // MARK: Count clients stuff
+
+    private func updateCustomersCounter() {
+        customersCounterLabel?.text = "\(customersQuantity - customers.count)/\(customersQuantity)"
+    }
+
+    // MARK: Timer stuff
+
+    private func startTimer() {
+        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(roundTimerFired), userInfo: nil, repeats: true)
+    }
+
+    private func stopTimer() {
+        timer.invalidate()
+        timerCounter = 0
+    }
+
+    @objc func roundTimerFired(_ timer: Timer) {
+        timerCounter += 0.1
+        timerLabel?.text = String(format: "%.1f", timerCounter)
+    }
     private func spawnCustomers() {
         while (customers.count < 10) {
             let position = getRandomPosition()
