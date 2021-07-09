@@ -31,11 +31,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var timer = Timer()
     private var timerCounter: Double = 0
     private var leftCircleControlTouch: UITouch?
-    private var rightCircleControlTouch: UITouch?
     private var deliveryman = Deliveryman(position: .zero)
     private var moveVector = CGVector()
     private var rotateAngle: CGFloat = 0
     private let removingDelay: TimeInterval = 0.3
+    private let customersQuantity = 10
+
+    private var customers: [Customer] = []
     
     override func didMove(to view: SKView) {
         addCamera()
@@ -44,6 +46,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addDeliveryCounter()
         addChild(deliveryman)
         addChild(Customer(position: .zero))
+        spawnCustomers()
+        spawnDeliveryman()
         physicsWorld.contactDelegate = self
 
         startTimer()
@@ -54,9 +58,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let location = touch.location(in: self)
             if atPoint(location) == leftCircleControl {
                 leftCircleControlTouch = touch
+                guard let circleNode = leftCircleControl else { return }
+                let vector = circleNode.getVector(point: location)
+                let angle = atan2(vector.dy, vector.dx) - CGFloat.pi / 2
+                rotateAngle = angle
             } else if atPoint(location) == rightCircleControl {
-                rightCircleControlTouch = touch
-            } else {
                 shoot()
             }
         }
@@ -67,10 +73,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let location = touch.location(in: circleNode)
             let vector = circleNode.getVector(point: location)
             moveVector = vector
-        }
-        if let touch = rightCircleControlTouch, touches.contains(touch), let circleNode = rightCircleControl {
-            let location = touch.location(in: circleNode)
-            let vector = circleNode.getVector(point: location)
             let angle = atan2(vector.dy, vector.dx) - CGFloat.pi / 2
             rotateAngle = angle
         }
@@ -81,10 +83,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
            touches.contains(leftCircleControlTouch) {
             self.leftCircleControlTouch = nil
             moveVector = .zero
-        }
-        if let rightCircleControlTouch = rightCircleControlTouch,
-           touches.contains(rightCircleControlTouch) {
-            self.rightCircleControlTouch = nil
         }
     }
     
@@ -111,6 +109,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             pizza?.removeFromParent(afterDelay: removingDelay)
             customer?.removeFromParent()
+
+            customers.removeAll{ $0.mainNode == customer! }
+            if customers.isEmpty {
+                print("EMPTY")
+            }
+
             addFallenCustomer(color: customer?.fillColor ?? .black,
                               position: customer?.position ?? .zero,
                               velocity: pizza?.physicsBody?.velocity ?? .zero)
@@ -216,4 +220,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         timerCounter += 0.1
         timerLabel?.text = String(format: "%.1f", timerCounter)
     }
+    private func spawnCustomers() {
+        for _ in 1...customersQuantity {
+            let customer = Customer(position: getRandomPosition())
+            addChild(customer)
+            customers.append(customer)
+        }
+    }
+
+    private func getRandomPosition() -> CGPoint {
+        let children = scene!.children.filter { $0.physicsBody == nil }
+        let child = children.randomElement()
+        let childFrame = child!.frame
+        return childFrame.randomPointInRect()
+    }
+
+    private func spawnDeliveryman() {
+        addChild(deliveryman)
+    }
+
 }
