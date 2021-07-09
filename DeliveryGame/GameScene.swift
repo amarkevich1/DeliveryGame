@@ -27,7 +27,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var leftCircleControl: CircleControlNode?
     private var rightCircleControl: CircleControlNode?
     private var timerLabel: SKLabelNode?
+    private var deliveyCounterLabel: SKLabelNode?
     private var timer = Timer()
+    private var timerCounter: Double = 0
     private var leftCircleControlTouch: UITouch?
     private var rightCircleControlTouch: UITouch?
     private var deliveryman = Deliveryman(position: .zero)
@@ -39,9 +41,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addCamera()
         addCircleControls()
         addTimer()
+        addDeliveryCounter()
         addChild(deliveryman)
         addChild(Customer(position: .zero))
         physicsWorld.contactDelegate = self
+
+        startTimer()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -153,22 +158,30 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
 
     private func addTimer() {
-        let topInset: CGFloat = 20
-        let timerWidth: CGFloat = 100
-
-        let timerLabel = SKLabelNode(text: "00:00:00")
-        timerLabel.verticalAlignmentMode = .center
-        timerLabel.horizontalAlignmentMode = .center
-        timerLabel.color = .yellow
+        let timerLeftInset: CGFloat = 30
+        let timerLabel = SKLabelNode()
+        timerLabel.verticalAlignmentMode = .top
+        timerLabel.horizontalAlignmentMode = .left
         timerLabel.fontSize = 64
-        print("x: \(Size.cameraHorizontalInset + timerWidth / 2)")
-        print("y: \(size.height / 2 - Size.cameraBottomInset)")
 
-        timerLabel.position = CGPoint(x: 0,
+        timerLabel.position = CGPoint(x: -timerLeftInset,
                                       y: size.height / 2 - Size.cameraTopInset)
 
         camera?.addChild(timerLabel)
         self.timerLabel = timerLabel
+    }
+
+    private func addDeliveryCounter() {
+        let deliveryCounter = SKLabelNode()
+        deliveryCounter.verticalAlignmentMode = .top
+        deliveryCounter.horizontalAlignmentMode = .right
+        deliveryCounter.fontSize = 56
+
+        deliveryCounter.position = CGPoint(x: size.width / 2 - Size.cameraHorizontalInset / 2,
+                                      y: size.height / 2 - Size.cameraTopInset)
+
+        camera?.addChild(deliveryCounter)
+        self.deliveyCounterLabel = deliveryCounter
     }
     
     private func shoot() {
@@ -182,7 +195,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addChild(ragdoll)
     }
 
-    @objc func roundTimerFired(_ timer: Timer) {
+    // MARK: Count clients stuff
 
+    private func updateDeliveriesCounter() {
+        deliveyCounterLabel?.text = "\("x")/\("N")"
+    }
+
+    // MARK: Timer stuff
+
+    private func startTimer() {
+        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(roundTimerFired), userInfo: nil, repeats: true)
+    }
+
+    private func stopTimer() {
+        timer.invalidate()
+        timerCounter = 0
+    }
+
+    @objc func roundTimerFired(_ timer: Timer) {
+        timerCounter += 0.1
+        timerLabel?.text = String(format: "%.1f", timerCounter)
     }
 }
