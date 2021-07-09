@@ -10,17 +10,19 @@ final class Customer: CompositeNode {
     let mainNode: SKShapeNode
     var arrayOfNodes: [SKShapeNode] = []
     var arrayOfJoints: [SKPhysicsJoint] = []
+    private(set) var body = SKShapeNode()
+    private(set) var head = SKShapeNode()
     
     init(position: CGPoint) {
         let bodySize = CGSize(width: Size.bodyWeight, height: Size.bodyHight)
-        let body = SKShapeNode(rectOf: bodySize)
+        body = SKShapeNode(rectOf: bodySize)
         body.position = position
         body.fillColor = PersonAppearance.shirtColor
         body.strokeColor = body.fillColor
         body.physicsBody = SKPhysicsBody(rectangleOf: bodySize)
         body.physicsBody?.categoryBitMask = Category.customer.rawValue
         
-        let head = SKShapeNode(circleOfRadius: Size.headRadius)
+        head = SKShapeNode(circleOfRadius: Size.headRadius)
         head.position = CGPoint(x: 0, y: Size.bodyHight / 2)
         head.fillColor = PersonAppearance.skinTone
         head.strokeColor = head.fillColor
