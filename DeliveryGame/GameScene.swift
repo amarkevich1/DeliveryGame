@@ -142,7 +142,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let result = timerCounter
         stopTimer()
         showWinMessage()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 4) { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
             self?.endGameDelegate?.endGame(points: result)
         }
     }
