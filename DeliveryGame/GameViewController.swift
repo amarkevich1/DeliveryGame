@@ -55,9 +55,6 @@ class GameViewController: UIViewController {
         }
     }
 
-    private func showMenu() {
-
-    }
 }
 
 extension GameViewController: GameViewControllerDelegate {
