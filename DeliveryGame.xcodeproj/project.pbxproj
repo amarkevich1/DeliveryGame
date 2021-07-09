@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		595856DE269721E200390645 /* CircleControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595856DD269721E200390645 /* CircleControl.swift */; };
+		5967F77B26973913006C377F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5967F77A26973913006C377F /* LaunchScreen.storyboard */; };
+		5967F7802697434F006C377F /* CGFloat+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5967F77F2697434F006C377F /* CGFloat+Extension.swift */; };
+		5967F783269752B1006C377F /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5967F782269752B1006C377F /* Customer.swift */; };
 		59A4B00F2694C1FC005DB9F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A4B00E2694C1FC005DB9F7 /* AppDelegate.swift */; };
 		59A4B0112694C1FC005DB9F7 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 59A4B0102694C1FC005DB9F7 /* GameScene.sks */; };
 		59A4B0132694C1FC005DB9F7 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 59A4B0122694C1FC005DB9F7 /* Actions.sks */; };
@@ -14,9 +18,17 @@
 		59A4B0172694C1FC005DB9F7 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A4B0162694C1FC005DB9F7 /* GameViewController.swift */; };
 		59A4B01A2694C1FC005DB9F7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59A4B0182694C1FC005DB9F7 /* Main.storyboard */; };
 		59A4B01C2694C1FE005DB9F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59A4B01B2694C1FE005DB9F7 /* Assets.xcassets */; };
+		59A4B0252694C496005DB9F7 /* Deliveryman.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A4B0242694C496005DB9F7 /* Deliveryman.swift */; };
+		59A4B0812696DF3E005DB9F7 /* CompositeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A4B0802696DF3E005DB9F7 /* CompositeNode.swift */; };
+		59A4B0862696DF70005DB9F7 /* Ragdoll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A4B0852696DF70005DB9F7 /* Ragdoll.swift */; };
+		59A4B08A2696F355005DB9F7 /* SKScene+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A4B0892696F355005DB9F7 /* SKScene+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		595856DD269721E200390645 /* CircleControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleControl.swift; sourceTree = "<group>"; };
+		5967F77A26973913006C377F /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		5967F77F2697434F006C377F /* CGFloat+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extension.swift"; sourceTree = "<group>"; };
+		5967F782269752B1006C377F /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		59A4B00B2694C1FC005DB9F7 /* DeliveryGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeliveryGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		59A4B00E2694C1FC005DB9F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		59A4B0102694C1FC005DB9F7 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -26,6 +38,10 @@
 		59A4B0192694C1FC005DB9F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		59A4B01B2694C1FE005DB9F7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		59A4B01D2694C1FE005DB9F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		59A4B0242694C496005DB9F7 /* Deliveryman.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deliveryman.swift; sourceTree = "<group>"; };
+		59A4B0802696DF3E005DB9F7 /* CompositeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositeNode.swift; sourceTree = "<group>"; };
+		59A4B0852696DF70005DB9F7 /* Ragdoll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ragdoll.swift; sourceTree = "<group>"; };
+		59A4B0892696F355005DB9F7 /* SKScene+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKScene+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +74,8 @@
 		59A4B00D2694C1FC005DB9F7 /* DeliveryGame */ = {
 			isa = PBXGroup;
 			children = (
+				59A4B0882696F33D005DB9F7 /* Extensions */,
+				59A4B07F2696DE74005DB9F7 /* Nodes */,
 				59A4B00E2694C1FC005DB9F7 /* AppDelegate.swift */,
 				59A4B0102694C1FC005DB9F7 /* GameScene.sks */,
 				59A4B0122694C1FC005DB9F7 /* Actions.sks */,
@@ -66,8 +84,30 @@
 				59A4B0182694C1FC005DB9F7 /* Main.storyboard */,
 				59A4B01B2694C1FE005DB9F7 /* Assets.xcassets */,
 				59A4B01D2694C1FE005DB9F7 /* Info.plist */,
+				5967F77A26973913006C377F /* LaunchScreen.storyboard */,
 			);
 			path = DeliveryGame;
+			sourceTree = "<group>";
+		};
+		59A4B07F2696DE74005DB9F7 /* Nodes */ = {
+			isa = PBXGroup;
+			children = (
+				59A4B0802696DF3E005DB9F7 /* CompositeNode.swift */,
+				59A4B0852696DF70005DB9F7 /* Ragdoll.swift */,
+				59A4B0242694C496005DB9F7 /* Deliveryman.swift */,
+				5967F782269752B1006C377F /* Customer.swift */,
+				595856DD269721E200390645 /* CircleControl.swift */,
+			);
+			path = Nodes;
+			sourceTree = "<group>";
+		};
+		59A4B0882696F33D005DB9F7 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				59A4B0892696F355005DB9F7 /* SKScene+Extensions.swift */,
+				5967F77F2697434F006C377F /* CGFloat+Extension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -130,6 +170,7 @@
 				59A4B01A2694C1FC005DB9F7 /* Main.storyboard in Resources */,
 				59A4B0112694C1FC005DB9F7 /* GameScene.sks in Resources */,
 				59A4B01C2694C1FE005DB9F7 /* Assets.xcassets in Resources */,
+				5967F77B26973913006C377F /* LaunchScreen.storyboard in Resources */,
 				59A4B0132694C1FC005DB9F7 /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -141,9 +182,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59A4B0812696DF3E005DB9F7 /* CompositeNode.swift in Sources */,
+				5967F783269752B1006C377F /* Customer.swift in Sources */,
+				595856DE269721E200390645 /* CircleControl.swift in Sources */,
 				59A4B0152694C1FC005DB9F7 /* GameScene.swift in Sources */,
 				59A4B0172694C1FC005DB9F7 /* GameViewController.swift in Sources */,
 				59A4B00F2694C1FC005DB9F7 /* AppDelegate.swift in Sources */,
+				5967F7802697434F006C377F /* CGFloat+Extension.swift in Sources */,
+				59A4B0252694C496005DB9F7 /* Deliveryman.swift in Sources */,
+				59A4B0862696DF70005DB9F7 /* Ragdoll.swift in Sources */,
+				59A4B08A2696F355005DB9F7 /* SKScene+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,6 +331,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ACP4GGWW53;
 				INFOPLIST_FILE = DeliveryGame/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -301,6 +350,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ACP4GGWW53;
 				INFOPLIST_FILE = DeliveryGame/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
