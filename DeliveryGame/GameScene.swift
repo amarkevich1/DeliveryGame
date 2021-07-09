@@ -58,7 +58,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if atPoint(location) == leftCircleControl {
                 leftCircleControlTouch = touch
                 guard let circleNode = leftCircleControl else { return }
-                let vector = circleNode.getVector(point: location)
+                let locationInCircle = touch.location(in: circleNode)
+                let vector = circleNode.getVector(point: locationInCircle)
+                moveVector = vector
                 let angle = atan2(vector.dy, vector.dx) - CGFloat.pi / 2
                 rotateAngle = angle
             } else if atPoint(location) == rightCircleControl {
