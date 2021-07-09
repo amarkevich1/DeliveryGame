@@ -59,7 +59,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let vector = circleNode.getVector(point: location)
             let angle = atan2(vector.dy, vector.dx) - CGFloat.pi / 2
             rotateAngle = angle
-            print(angle)
         }
     }
     

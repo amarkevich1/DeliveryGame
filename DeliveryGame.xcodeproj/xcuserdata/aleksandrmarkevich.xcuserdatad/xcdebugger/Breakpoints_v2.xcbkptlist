@@ -7,16 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "90AD110F-A37A-4246-BDBE-07E9D189C162"
+            uuid = "03B16564-9AA7-479E-8C39-C4DDC71970DF"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DeliveryGame/GameScene.swift"
+            filePath = "DeliveryGame/Nodes/Deliveryman.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
-            landmarkName = "didBegin(_:)"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
+            landmarkName = "addPizza()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

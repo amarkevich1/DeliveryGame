@@ -33,6 +33,7 @@ final class Deliveryman: CompositeNode {
         head.position = CGPoint(x: 0, y: Size.bodyHight / 2)
         head.fillColor = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
         head.strokeColor = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
+        head.zPosition = 1
         body.addChild(head)
         
         arrayOfNodes = [body]
@@ -72,7 +73,7 @@ final class Deliveryman: CompositeNode {
         pizza.position = CGPoint(x: 0, y: Size.bodyHight / 2 + Size.pizzaHight / 2 + 4)
         pizza.fillColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         pizza.strokeColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        pizza.zPosition = -1
+        pizza.zPosition = mainNode.zPosition
         mainNode.addChild(pizza)
         
         pizzaNode = pizza
