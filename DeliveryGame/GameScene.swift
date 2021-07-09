@@ -18,9 +18,18 @@ struct Category : OptionSet {
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
+    struct Size {
+        static let cameraHorizontalInset: CGFloat = 80
+        static let cameraBottomInset: CGFloat = 60
+        static let cameraTopInset: CGFloat = 32
+    }
     
     private var leftCircleControl: CircleControlNode?
     private var rightCircleControl: CircleControlNode?
+    private var timerLabel: SKLabelNode?
+    private var customersCounterLabel: SKLabelNode?
+    private var timer = Timer()
+    private var timerCounter: Double = 0
     private var leftCircleControlTouch: UITouch?
     private var deliveryman = Deliveryman(position: .zero)
     private var moveVector = CGVector()
@@ -33,9 +42,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func didMove(to view: SKView) {
         addCamera()
         addCircleControls()
+        addTimer()
+        addDeliveryCounter()
         spawnCustomers()
         spawnDeliveryman()
         physicsWorld.contactDelegate = self
+
+        startTimer()
+        updateCustomersCounter()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -92,12 +106,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 pizza = contact.bodyB.node as? SKShapeNode
                 customer = contact.bodyA.node as? SKShapeNode
             }
-            pizza?.removeFromParent(afterDelay: removingDelay)
+            pizza?.fadeOutSlowDownAndRemoveFromParent(afterDelay: removingDelay)
+            
             customer?.removeFromParent()
 
             customers.removeAll{ $0.mainNode == customer! }
             if customers.isEmpty {
-                print("EMPTY")
+                endGame()
             }
 
             addFallenCustomer(color: customer?.fillColor ?? .black,
@@ -105,14 +120,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                               velocity: pizza?.physicsBody?.velocity ?? .zero)
         } else if (contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask) == Category([.pizza, .border]).rawValue {
             if contact.bodyA.categoryBitMask == Category.pizza.rawValue {
-                contact.bodyA.node?.removeFromParent(afterDelay: removingDelay)
+                contact.bodyA.node?.fadeOutSlowDownAndRemoveFromParent(afterDelay: removingDelay)
             } else {
-                contact.bodyB.node?.removeFromParent(afterDelay: removingDelay)
+                contact.bodyB.node?.fadeOutSlowDownAndRemoveFromParent(afterDelay: removingDelay)
             }
         }
+        updateCustomersCounter()
     }
     
     // MARK: - Private methods
+
+    private func endGame() {
+        stopTimer()
+        let points = timerCounter
+    }
     
     private func addCamera() {
         let camera = SKCameraNode()
@@ -131,20 +152,46 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     private func addCircleControls() {
-        let horizontalInset: CGFloat = 80
-        let bottomInset: CGFloat = 60
+
         let controlRadius: CGFloat = 70
         let leftCircleControl = CircleControlNode.defaultControl(radius: controlRadius)
-        leftCircleControl.position = CGPoint(x: -size.width / 2 + controlRadius + horizontalInset,
-                                             y: -size.height / 2 + controlRadius + bottomInset)
+        leftCircleControl.position = CGPoint(x: -size.width / 2 + controlRadius + Size.cameraHorizontalInset,
+                                             y: -size.height / 2 + controlRadius + Size.cameraBottomInset)
         camera?.addChild(leftCircleControl)
         self.leftCircleControl = leftCircleControl
 
         let rightCircleControl = CircleControlNode.defaultControl(radius: controlRadius)
-        rightCircleControl.position = CGPoint(x: size.width / 2 - controlRadius - horizontalInset,
-                                              y: -size.height / 2 + controlRadius + bottomInset)
+        rightCircleControl.position = CGPoint(x: size.width / 2 - controlRadius - Size.cameraHorizontalInset,
+                                              y: -size.height / 2 + controlRadius + Size.cameraBottomInset)
         camera?.addChild(rightCircleControl)
         self.rightCircleControl = rightCircleControl
+    }
+
+    private func addTimer() {
+        let timerLeftInset: CGFloat = 30
+        let timerLabel = SKLabelNode()
+        timerLabel.verticalAlignmentMode = .top
+        timerLabel.horizontalAlignmentMode = .left
+        timerLabel.fontSize = 64
+
+        timerLabel.position = CGPoint(x: -timerLeftInset,
+                                      y: size.height / 2 - Size.cameraTopInset)
+
+        camera?.addChild(timerLabel)
+        self.timerLabel = timerLabel
+    }
+
+    private func addDeliveryCounter() {
+        let deliveryCounter = SKLabelNode()
+        deliveryCounter.verticalAlignmentMode = .top
+        deliveryCounter.horizontalAlignmentMode = .right
+        deliveryCounter.fontSize = 56
+
+        deliveryCounter.position = CGPoint(x: size.width / 2 - Size.cameraHorizontalInset / 2,
+                                      y: size.height / 2 - Size.cameraTopInset)
+
+        camera?.addChild(deliveryCounter)
+        self.customersCounterLabel = deliveryCounter
     }
     
     private func shoot() {
@@ -158,24 +205,64 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addChild(ragdoll)
     }
 
+    // MARK: Count clients stuff
+
+    private func updateCustomersCounter() {
+        customersCounterLabel?.text = "\(customersQuantity - customers.count)/\(customersQuantity)"
+    }
+
+    // MARK: Timer stuff
+
+    private func startTimer() {
+        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(roundTimerFired), userInfo: nil, repeats: true)
+    }
+
+    private func stopTimer() {
+        timer.invalidate()
+        timerCounter = 0
+    }
+
+    @objc func roundTimerFired(_ timer: Timer) {
+        timerCounter += 0.1
+        timerLabel?.text = String(format: "%.1f", timerCounter)
+    }
     private func spawnCustomers() {
-        for _ in 1...customersQuantity {
-            let customer = Customer(position: getRandomPosition())
-            customer.mainNode.zRotation = CGFloat(Double.random(in: 0...Double.pi))
-            addChild(customer)
-            customers.append(customer)
+
+        while (customers.count < 10) {
+            let position = getRandomPosition()
+            if verifyPositionForCustomer(position: position) {
+                let customer = Customer(position: position)
+                addChild(customer)
+                customers.append(customer)
+            }
+
         }
     }
 
     private func getRandomPosition() -> CGPoint {
-        let children = scene!.children.filter { $0.physicsBody == nil }
-        let child = children.randomElement()
-        let childFrame = child!.frame
-        return childFrame.randomPointInRect()
+        let backgroundNode = scene?.childNode(withName: "bg_node")
+        let randomPoint = backgroundNode!.frame.randomPointInRect()
+        return randomPoint
     }
 
     private func spawnDeliveryman() {
         addChild(deliveryman)
+    }
+    
+    private func verifyPositionForCustomer(position: CGPoint) -> Bool {
+        var points = [position]
+        points.append(CGPoint(x: position.x, y: position.y + 10))
+        points.append(CGPoint(x: position.x, y: position.y - 10))
+        points.append(CGPoint(x: position.x, y: position.y - 20))
+        points.append(CGPoint(x: position.x, y: position.y - 30))
+        points.append(CGPoint(x: position.x, y: position.y - 40))
+        points.append(CGPoint(x: position.x, y: position.y - 50))
+        points.append(CGPoint(x: position.x, y: position.y - 60))
+        points.append(CGPoint(x: position.x, y: position.y - 70))
+        points.append(CGPoint(x: position.x, y: position.y - 80))
+        points.append(CGPoint(x: position.x, y: position.y - 90))
+        
+        return !points.contains(where: { nodes(at: $0).contains(where: { $0.physicsBody != nil }) })
     }
 
 }

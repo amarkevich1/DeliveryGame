@@ -23,8 +23,8 @@
 		59A4B0862696DF70005DB9F7 /* Ragdoll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A4B0852696DF70005DB9F7 /* Ragdoll.swift */; };
 		59A4B08A2696F355005DB9F7 /* SKScene+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A4B0892696F355005DB9F7 /* SKScene+Extensions.swift */; };
 		59FFCD9126986052000B8940 /* SKNode+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59FFCD9026986052000B8940 /* SKNode+Extensions.swift */; };
-		5B5541D126987043004A6279 /* Slice_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B5541D026987043004A6279 /* Slice_logo.png */; };
 		5B5541D326987DF9004A6279 /* CGRect+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5541D226987DF9004A6279 /* CGRect+Extensions.swift */; };
+		5ECC02B2269890A8005DC432 /* slice-box.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ECC02B1269890A8005DC432 /* slice-box.png */; };
 		5B5541D7269892B7004A6279 /* PersonAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5541D6269892B7004A6279 /* PersonAppearance.swift */; };
 /* End PBXBuildFile section */
 
@@ -47,8 +47,8 @@
 		59A4B0852696DF70005DB9F7 /* Ragdoll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ragdoll.swift; sourceTree = "<group>"; };
 		59A4B0892696F355005DB9F7 /* SKScene+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKScene+Extensions.swift"; sourceTree = "<group>"; };
 		59FFCD9026986052000B8940 /* SKNode+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKNode+Extensions.swift"; sourceTree = "<group>"; };
-		5B5541D026987043004A6279 /* Slice_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Slice_logo.png; sourceTree = "<group>"; };
 		5B5541D226987DF9004A6279 /* CGRect+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Extensions.swift"; sourceTree = "<group>"; };
+		5ECC02B1269890A8005DC432 /* slice-box.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slice-box.png"; sourceTree = "<group>"; };
 		5B5541D6269892B7004A6279 /* PersonAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonAppearance.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -125,7 +125,7 @@
 		5B5541CF26987038004A6279 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				5B5541D026987043004A6279 /* Slice_logo.png */,
+				5ECC02B1269890A8005DC432 /* slice-box.png */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -187,9 +187,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5ECC02B2269890A8005DC432 /* slice-box.png in Resources */,
 				59A4B01A2694C1FC005DB9F7 /* Main.storyboard in Resources */,
 				59A4B0112694C1FC005DB9F7 /* GameScene.sks in Resources */,
-				5B5541D126987043004A6279 /* Slice_logo.png in Resources */,
 				59A4B01C2694C1FE005DB9F7 /* Assets.xcassets in Resources */,
 				5967F77B26973913006C377F /* LaunchScreen.storyboard in Resources */,
 				59A4B0132694C1FC005DB9F7 /* Actions.sks in Resources */,

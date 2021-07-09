@@ -69,7 +69,7 @@ final class Deliveryman: CompositeNode {
 
     private func addPizza() {
         let pizzaSize = CGSize(width: Size.pizzaWeight, height: Size.pizzaHight)
-        let texture = SKTexture.init(image: UIImage(named: "Slice_logo")!)
+        let texture = SKTexture.init(image: UIImage(named: "slice-box")!)
         let pizza = SKSpriteNode(texture: texture, color: UIColor.white, size: pizzaSize)
         pizza.position = CGPoint(x: 0, y: Size.bodyHight / 2 + Size.pizzaHight / 2 + 4)
         pizza.zPosition = mainNode.zPosition

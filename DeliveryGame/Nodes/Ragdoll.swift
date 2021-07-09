@@ -175,6 +175,6 @@ final class Ragdoll: CompositeNode {
                          bodyAndRightLegTopPartJoint,
                          rightLegTopPartAndRightLegBottomPartJoint]
         
-        for node in arrayOfNodes { node.physicsBody?.linearDamping = 0.8 }
+        for node in arrayOfNodes { node.physicsBody?.linearDamping = 0.5 }
     }
 }
