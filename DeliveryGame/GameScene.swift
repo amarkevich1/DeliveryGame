@@ -49,6 +49,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         physicsWorld.contactDelegate = self
 
         startTimer()
+        updateCustomersCounter()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -129,8 +130,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // MARK: - Private methods
 
     private func endGame() {
+        stopTimer()
         let points = timerCounter
-
     }
     
     private func addCamera() {
@@ -206,7 +207,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // MARK: Count clients stuff
 
     private func updateCustomersCounter() {
-        customersCounterLabel?.text = "\(customers.count)/\(customersQuantity)"
+        customersCounterLabel?.text = "\(customersQuantity - customers.count)/\(customersQuantity)"
     }
 
     // MARK: Timer stuff
