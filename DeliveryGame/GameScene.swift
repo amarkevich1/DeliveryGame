@@ -27,7 +27,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var leftCircleControl: CircleControlNode?
     private var rightCircleControl: CircleControlNode?
     private var timerLabel: SKLabelNode?
-    private var deliveyCounterLabel: SKLabelNode?
+    private var customersCounterLabel: SKLabelNode?
     private var timer = Timer()
     private var timerCounter: Double = 0
     private var leftCircleControlTouch: UITouch?
@@ -110,7 +110,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
             customers.removeAll{ $0.mainNode == customer! }
             if customers.isEmpty {
-                print("EMPTY")
+                endGame()
             }
 
             addFallenCustomer(color: customer?.fillColor ?? .black,
@@ -123,9 +123,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 contact.bodyB.node?.removeFromParent(afterDelay: removingDelay)
             }
         }
+        updateCustomersCounter()
     }
     
     // MARK: - Private methods
+
+    private func endGame() {
+        let points = timerCounter
+
+    }
     
     private func addCamera() {
         let camera = SKCameraNode()
@@ -183,7 +189,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                                       y: size.height / 2 - Size.cameraTopInset)
 
         camera?.addChild(deliveryCounter)
-        self.deliveyCounterLabel = deliveryCounter
+        self.customersCounterLabel = deliveryCounter
     }
     
     private func shoot() {
@@ -199,8 +205,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     // MARK: Count clients stuff
 
-    private func updateDeliveriesCounter() {
-        deliveyCounterLabel?.text = "\("x")/\("N")"
+    private func updateCustomersCounter() {
+        customersCounterLabel?.text = "\(customers.count)/\(customersQuantity)"
     }
 
     // MARK: Timer stuff
