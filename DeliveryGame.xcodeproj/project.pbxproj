@@ -23,6 +23,7 @@
 		59A4B0862696DF70005DB9F7 /* Ragdoll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A4B0852696DF70005DB9F7 /* Ragdoll.swift */; };
 		59A4B08A2696F355005DB9F7 /* SKScene+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A4B0892696F355005DB9F7 /* SKScene+Extensions.swift */; };
 		59FFCD9126986052000B8940 /* SKNode+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59FFCD9026986052000B8940 /* SKNode+Extensions.swift */; };
+		5B5541D126987043004A6279 /* Slice_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B5541D026987043004A6279 /* Slice_logo.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		59A4B0852696DF70005DB9F7 /* Ragdoll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ragdoll.swift; sourceTree = "<group>"; };
 		59A4B0892696F355005DB9F7 /* SKScene+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKScene+Extensions.swift"; sourceTree = "<group>"; };
 		59FFCD9026986052000B8940 /* SKNode+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKNode+Extensions.swift"; sourceTree = "<group>"; };
+		5B5541D026987043004A6279 /* Slice_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Slice_logo.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 		59A4B00D2694C1FC005DB9F7 /* DeliveryGame */ = {
 			isa = PBXGroup;
 			children = (
+				5B5541CF26987038004A6279 /* Assets */,
 				59A4B0882696F33D005DB9F7 /* Extensions */,
 				59A4B07F2696DE74005DB9F7 /* Nodes */,
 				59A4B00E2694C1FC005DB9F7 /* AppDelegate.swift */,
@@ -111,6 +114,14 @@
 				59FFCD9026986052000B8940 /* SKNode+Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		5B5541CF26987038004A6279 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				5B5541D026987043004A6279 /* Slice_logo.png */,
+			);
+			path = Assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -172,6 +183,7 @@
 			files = (
 				59A4B01A2694C1FC005DB9F7 /* Main.storyboard in Resources */,
 				59A4B0112694C1FC005DB9F7 /* GameScene.sks in Resources */,
+				5B5541D126987043004A6279 /* Slice_logo.png in Resources */,
 				59A4B01C2694C1FE005DB9F7 /* Assets.xcassets in Resources */,
 				5967F77B26973913006C377F /* LaunchScreen.storyboard in Resources */,
 				59A4B0132694C1FC005DB9F7 /* Actions.sks in Resources */,

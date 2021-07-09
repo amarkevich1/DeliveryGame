@@ -4,7 +4,7 @@ private let rotetionDuration: TimeInterval = 1 / 10
 private let shotPowerCoefficient: CGFloat = 1000
 
 final class Deliveryman: CompositeNode {
-    
+
     private struct Size {
         static let headRadius: CGFloat = 10
         static let bodyHight: CGFloat = 15
@@ -12,12 +12,12 @@ final class Deliveryman: CompositeNode {
         static let pizzaWeight: CGFloat = 25
         static let pizzaHight: CGFloat = 25
     }
-    
+
     let mainNode: SKShapeNode
     var arrayOfNodes: [SKShapeNode] = []
     var arrayOfJoints: [SKPhysicsJoint] = []
-    private var pizzaNode: SKShapeNode?
-    
+    private var pizzaNode: SKSpriteNode?
+
     init(position: CGPoint) {
         let bodySize = CGSize(width: Size.bodyWeight, height: Size.bodyHight)
         let body = SKShapeNode(rectOf: bodySize)
@@ -28,26 +28,26 @@ final class Deliveryman: CompositeNode {
         body.physicsBody?.allowsRotation = false
         mainNode = body
         self.addPizza()
-        
+
         let head = SKShapeNode(circleOfRadius: Size.headRadius)
         head.position = CGPoint(x: 0, y: Size.bodyHight / 2)
         head.fillColor = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
         head.strokeColor = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
         head.zPosition = 1
         body.addChild(head)
-        
+
         arrayOfNodes = [body]
     }
-    
+
     func update(velocity: CGVector) {
         mainNode.physicsBody?.velocity = velocity
     }
-    
+
     func rotate(toAngle angle: CGFloat, duration: TimeInterval = rotetionDuration) {
         mainNode.run(SKAction.rotate(toAngle: angle, duration: duration, shortestUnitArc: true))
     }
-    
-    func throwPizza() -> SKShapeNode? {
+
+    func throwPizza() -> SKSpriteNode? {
         guard let pizzaNode = pizzaNode, pizzaNode.parent == mainNode else { return nil }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
             self?.addPizza()
@@ -66,16 +66,15 @@ final class Deliveryman: CompositeNode {
         pizzaNode.physicsBody?.usesPreciseCollisionDetection = true
         return pizzaNode
     }
-    
+
     private func addPizza() {
         let pizzaSize = CGSize(width: Size.pizzaWeight, height: Size.pizzaHight)
-        let pizza = SKShapeNode(rectOf: pizzaSize)
+        let texture = SKTexture.init(image: UIImage(named: "Slice_logo")!)
+        let pizza = SKSpriteNode(texture: texture, color: UIColor.white, size: pizzaSize)
         pizza.position = CGPoint(x: 0, y: Size.bodyHight / 2 + Size.pizzaHight / 2 + 4)
-        pizza.fillColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        pizza.strokeColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         pizza.zPosition = mainNode.zPosition
         mainNode.addChild(pizza)
-        
+
         pizzaNode = pizza
     }
 }
