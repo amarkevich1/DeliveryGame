@@ -227,6 +227,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         timerLabel?.text = String(format: "%.1f", timerCounter)
     }
     private func spawnCustomers() {
+
         while (customers.count < 10) {
             let position = getRandomPosition()
             if verifyPositionForCustomer(position: position) {
@@ -234,6 +235,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 addChild(customer)
                 customers.append(customer)
             }
+
         }
     }
 
