@@ -26,7 +26,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var deliveryman = Deliveryman(position: .zero)
     private var moveVector = CGVector()
     private var rotateAngle: CGFloat = 0
-    private let removingDelay: TimeInterval = 1
+    private let removingDelay: TimeInterval = 0.3
     
     override func didMove(to view: SKView) {
         addCamera()

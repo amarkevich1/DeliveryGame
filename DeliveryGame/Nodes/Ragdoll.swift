@@ -175,12 +175,6 @@ final class Ragdoll: CompositeNode {
                          bodyAndRightLegTopPartJoint,
                          rightLegTopPartAndRightLegBottomPartJoint]
         
-//        for node in arrayOfNodes {
-//
-//            node.physicsBody?.linearDamping = linearDamping
-//            node.physicsBody?.categoryBitMask = Category.ragdoll.rawValue
-//            node.physicsBody?.collisionBitMask = Category.border.rawValue | Category.player.rawValue | Category.enemy.rawValue
-//        }
-
+        for node in arrayOfNodes { node.physicsBody?.linearDamping = 0.8 }
     }
 }
