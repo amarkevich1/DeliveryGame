@@ -36,6 +36,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var rotateAngle: CGFloat = 0
     private let removingDelay: TimeInterval = 0.3
     private let customersQuantity = 10
+    var delegate: GameViewControllerDelegate?
 
     private var customers: [Customer] = []
     
@@ -47,6 +48,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         spawnCustomers()
         spawnDeliveryman()
         physicsWorld.contactDelegate = self
+        delegate = self
 
         startTimer()
         updateCustomersCounter()
@@ -132,7 +134,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     private func endGame() {
         stopTimer()
-        let points = timerCounter
+        delegate?.endGame(points: timerCounter)
+
     }
     
     private func addCamera() {
@@ -174,7 +177,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         timerLabel.horizontalAlignmentMode = .left
         timerLabel.fontSize = 64
 
-        timerLabel.position = CGPoint(x: -timerLeftInset,
+        timerLabel.position = CGPoint(x: -size.width / 2 + timerLeftInset,
                                       y: size.height / 2 - Size.cameraTopInset)
 
         camera?.addChild(timerLabel)
