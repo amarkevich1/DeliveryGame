@@ -26,6 +26,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var deliveryman = Deliveryman(position: .zero)
     private var moveVector = CGVector()
     private var rotateAngle: CGFloat = 0
+    private let removingDelay: TimeInterval = 1
     
     override func didMove(to view: SKView) {
         addCamera()
@@ -95,16 +96,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 pizza = contact.bodyB.node as? SKShapeNode
                 customer = contact.bodyA.node as? SKShapeNode
             }
-            pizza?.removeFromParent()
+            pizza?.removeFromParent(afterDelay: removingDelay)
             customer?.removeFromParent()
             addFallenCustomer(color: customer?.fillColor ?? .black,
                               position: customer?.position ?? .zero,
                               velocity: pizza?.physicsBody?.velocity ?? .zero)
         } else if (contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask) == Category([.pizza, .border]).rawValue {
             if contact.bodyA.categoryBitMask == Category.pizza.rawValue {
-                contact.bodyA.node?.removeFromParent()
+                contact.bodyA.node?.removeFromParent(afterDelay: removingDelay)
             } else {
-                contact.bodyB.node?.removeFromParent()
+                contact.bodyB.node?.removeFromParent(afterDelay: removingDelay)
             }
         }
     }
