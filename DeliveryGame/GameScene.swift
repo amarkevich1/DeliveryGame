@@ -113,14 +113,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             customer?.removeFromParent()
 
+            if let customer1 = customers.filter({ $0.mainNode == customer }).first {
+                addFallenCustomer(bodyColor: customer1.body.fillColor,
+                                  skinTone: customer1.head.fillColor,
+                                  position: customer?.position ?? .zero,
+                                  velocity: pizza?.physicsBody?.velocity ?? .zero)
+            }
+
             customers.removeAll{ $0.mainNode == customer! }
             if customers.isEmpty {
                 endGame()
             }
 
-            addFallenCustomer(color: customer?.fillColor ?? .black,
-                              position: customer?.position ?? .zero,
-                              velocity: pizza?.physicsBody?.velocity ?? .zero)
+
         } else if (contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask) == Category([.pizza, .border]).rawValue {
             if contact.bodyA.categoryBitMask == Category.pizza.rawValue {
                 contact.bodyA.node?.fadeOutSlowDownAndRemoveFromParent(afterDelay: removingDelay)
@@ -202,8 +207,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         pizza.move(toParent: self)
     }
     
-    private func addFallenCustomer(color: UIColor, position: CGPoint, velocity: CGVector) {
-        let ragdoll = Ragdoll(color: color, position: position)
+    private func addFallenCustomer(bodyColor: UIColor, skinTone: UIColor, position: CGPoint, velocity: CGVector) {
+        let ragdoll = Ragdoll(bodyColor: bodyColor, skinTone: skinTone, position: position)
         ragdoll.mainNode.physicsBody?.velocity = velocity
         addChild(ragdoll)
     }
