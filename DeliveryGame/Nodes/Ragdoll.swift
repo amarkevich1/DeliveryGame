@@ -20,19 +20,19 @@ final class Ragdoll: CompositeNode {
     var arrayOfNodes: [SKShapeNode] = []
     var arrayOfJoints: [SKPhysicsJoint] = []
     
-    init(color: SKColor, position: CGPoint) {
+    init(bodyColor: UIColor, skinTone: UIColor, position: CGPoint) {
         
         let head = SKShapeNode(circleOfRadius: Size.headRadius)
         head.position = position
-        head.fillColor = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
-        head.strokeColor = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
+        head.fillColor = skinTone
+        head.strokeColor = skinTone
         head.physicsBody = SKPhysicsBody(circleOfRadius: Size.headRadius)
         
         let bodySize = CGSize(width: Size.bodyWeight, height: Size.bodyHight)
         let body = SKShapeNode(rectOf: bodySize)
         body.position = CGPoint(x: position.x, y: position.y - Size.headRadius - Size.bodyHight / 2)
-        body.fillColor = color
-        body.strokeColor = color
+        body.fillColor = bodyColor
+        body.strokeColor = bodyColor
         body.physicsBody = SKPhysicsBody(rectangleOf: bodySize)
         
         let headAndBodyJoint = SKPhysicsJointPin.joint(withBodyA: head.physicsBody!,
@@ -44,8 +44,8 @@ final class Ragdoll: CompositeNode {
         let leftArmTopPart = SKShapeNode(rectOf: armTopPartSize)
         leftArmTopPart.position = CGPoint(x: body.position.x - Size.bodyWeight / 2 - Size.armTopPartWeight / 2,
                                           y: body.position.y + Size.bodyHight / 2 - Size.armTopPartHeight / 2)
-        leftArmTopPart.fillColor = color
-        leftArmTopPart.strokeColor = color
+        leftArmTopPart.fillColor = bodyColor
+        leftArmTopPart.strokeColor = bodyColor
         leftArmTopPart.physicsBody = SKPhysicsBody(rectangleOf: armTopPartSize)
         
         let bodyAndLeftArmTopPartJoint = SKPhysicsJointPin.joint(withBodyA: body.physicsBody!,
@@ -57,8 +57,8 @@ final class Ragdoll: CompositeNode {
         let leftArmBottomPart = SKShapeNode(rectOf: armBottomPartSize)
         leftArmBottomPart.position = CGPoint(x: leftArmTopPart.position.x,
                                              y: leftArmTopPart.position.y - Size.armTopPartHeight / 2 - Size.armBottomPartHeight / 2)
-        leftArmBottomPart.fillColor = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
-        leftArmBottomPart.strokeColor = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
+        leftArmBottomPart.fillColor = bodyColor
+        leftArmBottomPart.strokeColor = bodyColor
         leftArmBottomPart.physicsBody = SKPhysicsBody(rectangleOf: armBottomPartSize)
         
         let leftArmTopPartAndLeftArmBottomPartJoint = SKPhysicsJointPin.joint(
@@ -71,8 +71,8 @@ final class Ragdoll: CompositeNode {
         let rightArmTopPart = SKShapeNode(rectOf: armTopPartSize)
         rightArmTopPart.position = CGPoint(x: body.position.x + Size.bodyWeight / 2 + Size.armTopPartWeight / 2,
                                            y: body.position.y + Size.bodyHight / 2 - Size.armTopPartHeight / 2)
-        rightArmTopPart.fillColor = color
-        rightArmTopPart.strokeColor = color
+        rightArmTopPart.fillColor = bodyColor
+        rightArmTopPart.strokeColor = bodyColor
         rightArmTopPart.physicsBody = SKPhysicsBody(rectangleOf: armTopPartSize)
         
         let bodyAndRightArmTopPartJoint = SKPhysicsJointPin.joint(withBodyA: body.physicsBody!,
@@ -83,8 +83,8 @@ final class Ragdoll: CompositeNode {
         let rightArmBottomPart = SKShapeNode(rectOf: armBottomPartSize)
         rightArmBottomPart.position = CGPoint(x: rightArmTopPart.position.x,
                                               y: rightArmTopPart.position.y - Size.armTopPartHeight / 2 - Size.armBottomPartHeight / 2)
-        rightArmBottomPart.fillColor = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
-        rightArmBottomPart.strokeColor = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
+        rightArmBottomPart.fillColor = bodyColor
+        rightArmBottomPart.strokeColor = bodyColor
         rightArmBottomPart.physicsBody = SKPhysicsBody(rectangleOf: armBottomPartSize)
         
         let rightArmTopPartAndRightArmBottomPartJoint = SKPhysicsJointPin.joint(
@@ -98,8 +98,8 @@ final class Ragdoll: CompositeNode {
         let leftLegTopPart = SKShapeNode(rectOf: legTopPartSize)
         leftLegTopPart.position = CGPoint(x: body.position.x - Size.bodyWeight / 2 + Size.legTopPartWeight / 2,
                                           y: body.position.y - Size.bodyHight / 2 - Size.legTopPartHeight / 2)
-        leftLegTopPart.fillColor = color
-        leftLegTopPart.strokeColor = color
+        leftLegTopPart.fillColor = bodyColor
+        leftLegTopPart.strokeColor = bodyColor
         leftLegTopPart.physicsBody = SKPhysicsBody(rectangleOf: legTopPartSize)
         
         let bodyAndLeftLegTopPartJoint = SKPhysicsJointPin.joint(
@@ -113,8 +113,8 @@ final class Ragdoll: CompositeNode {
         let leftLegBottomPart = SKShapeNode(rectOf: legBottomPartSize)
         leftLegBottomPart.position = CGPoint(x: leftLegTopPart.position.x,
                                          y: leftLegTopPart.position.y - Size.legTopPartHeight / 2 - Size.legBottomPartHeight / 2)
-        leftLegBottomPart.fillColor = color
-        leftLegBottomPart.strokeColor = color
+        leftLegBottomPart.fillColor = bodyColor
+        leftLegBottomPart.strokeColor = bodyColor
         leftLegBottomPart.physicsBody = SKPhysicsBody(rectangleOf: legBottomPartSize)
         
         let leftLegTopPartAndLeftLegBottomPartJoint = SKPhysicsJointPin.joint(
@@ -128,8 +128,8 @@ final class Ragdoll: CompositeNode {
         let rightLegTopPart = SKShapeNode(rectOf: legTopPartSize)
         rightLegTopPart.position = CGPoint(x: body.position.x + Size.bodyWeight / 2 - Size.legTopPartWeight / 2,
                                            y: body.position.y - Size.bodyHight / 2 - Size.legTopPartHeight / 2)
-        rightLegTopPart.fillColor = color
-        rightLegTopPart.strokeColor = color
+        rightLegTopPart.fillColor = bodyColor
+        rightLegTopPart.strokeColor = bodyColor
         rightLegTopPart.physicsBody = SKPhysicsBody(rectangleOf: legTopPartSize)
         
         let bodyAndRightLegTopPartJoint = SKPhysicsJointPin.joint(
@@ -142,8 +142,8 @@ final class Ragdoll: CompositeNode {
         let rightLegBottomPart = SKShapeNode(rectOf: legBottomPartSize)
         rightLegBottomPart.position = CGPoint(x: rightLegTopPart.position.x,
                                               y: rightLegTopPart.position.y - Size.legTopPartHeight / 2 - Size.legBottomPartHeight / 2)
-        rightLegBottomPart.fillColor = color
-        rightLegBottomPart.strokeColor = color
+        rightLegBottomPart.fillColor = bodyColor
+        rightLegBottomPart.strokeColor = bodyColor
         rightLegBottomPart.physicsBody = SKPhysicsBody(rectangleOf: legBottomPartSize)
         
         let rightLegTopPartAndRightLegBottomPartJoint = SKPhysicsJointPin.joint(
