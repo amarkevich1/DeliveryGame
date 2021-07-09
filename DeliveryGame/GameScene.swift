@@ -226,18 +226,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         timerLabel?.text = String(format: "%.1f", timerCounter)
     }
     private func spawnCustomers() {
-        for _ in 1...customersQuantity {
-            let customer = Customer(position: getRandomPosition())
-            addChild(customer)
-            customers.append(customer)
+        while (customers.count < 10) {
+            let position = getRandomPosition()
+            if !nodes(at: position).contains(where: { $0.physicsBody != nil }) {
+                let customer = Customer(position: position)
+                addChild(customer)
+                customers.append(customer)
+            }
         }
     }
 
     private func getRandomPosition() -> CGPoint {
-        let children = scene!.children.filter { $0.physicsBody == nil }
-        let child = children.randomElement()
-        let childFrame = child!.frame
-        return childFrame.randomPointInRect()
+        let backgroundNode = scene?.childNode(withName: "bg_node")
+        let randomPoint = backgroundNode!.frame.randomPointInRect()
+        return randomPoint
     }
 
     private func spawnDeliveryman() {
