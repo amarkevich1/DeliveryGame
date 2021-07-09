@@ -23,9 +23,10 @@
 		59A4B0862696DF70005DB9F7 /* Ragdoll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A4B0852696DF70005DB9F7 /* Ragdoll.swift */; };
 		59A4B08A2696F355005DB9F7 /* SKScene+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A4B0892696F355005DB9F7 /* SKScene+Extensions.swift */; };
 		59FFCD9126986052000B8940 /* SKNode+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59FFCD9026986052000B8940 /* SKNode+Extensions.swift */; };
+		59FFCD9B26989C6A000B8940 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59FFCD9A26989C6A000B8940 /* StartViewController.swift */; };
 		5B5541D326987DF9004A6279 /* CGRect+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5541D226987DF9004A6279 /* CGRect+Extensions.swift */; };
-		5ECC02B2269890A8005DC432 /* slice-box.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ECC02B1269890A8005DC432 /* slice-box.png */; };
 		5B5541D7269892B7004A6279 /* PersonAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5541D6269892B7004A6279 /* PersonAppearance.swift */; };
+		5ECC02B2269890A8005DC432 /* slice-box.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ECC02B1269890A8005DC432 /* slice-box.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,9 +48,10 @@
 		59A4B0852696DF70005DB9F7 /* Ragdoll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ragdoll.swift; sourceTree = "<group>"; };
 		59A4B0892696F355005DB9F7 /* SKScene+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKScene+Extensions.swift"; sourceTree = "<group>"; };
 		59FFCD9026986052000B8940 /* SKNode+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKNode+Extensions.swift"; sourceTree = "<group>"; };
+		59FFCD9A26989C6A000B8940 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		5B5541D226987DF9004A6279 /* CGRect+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Extensions.swift"; sourceTree = "<group>"; };
-		5ECC02B1269890A8005DC432 /* slice-box.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slice-box.png"; sourceTree = "<group>"; };
 		5B5541D6269892B7004A6279 /* PersonAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonAppearance.swift; sourceTree = "<group>"; };
+		5ECC02B1269890A8005DC432 /* slice-box.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slice-box.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 				59A4B0102694C1FC005DB9F7 /* GameScene.sks */,
 				59A4B0122694C1FC005DB9F7 /* Actions.sks */,
 				59A4B0142694C1FC005DB9F7 /* GameScene.swift */,
+				59FFCD9A26989C6A000B8940 /* StartViewController.swift */,
 				59A4B0162694C1FC005DB9F7 /* GameViewController.swift */,
 				59A4B0182694C1FC005DB9F7 /* Main.storyboard */,
 				59A4B01B2694C1FE005DB9F7 /* Assets.xcassets */,
@@ -204,6 +207,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				59A4B0812696DF3E005DB9F7 /* CompositeNode.swift in Sources */,
+				59FFCD9B26989C6A000B8940 /* StartViewController.swift in Sources */,
 				5B5541D326987DF9004A6279 /* CGRect+Extensions.swift in Sources */,
 				5967F783269752B1006C377F /* Customer.swift in Sources */,
 				595856DE269721E200390645 /* CircleControl.swift in Sources */,

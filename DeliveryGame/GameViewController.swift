@@ -36,11 +36,12 @@ class GameViewController: UIViewController {
     private func runGame() {
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'
-            if let scene = SKScene(fileNamed: "GameScene") {
+            if let scene = SKScene(fileNamed: "GameScene") as? GameScene {
                 // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
                 scene.size = view.bounds.size
                 scene.physicsWorld.gravity = .zero
+                scene.endGameDelegate = self
                 // Present the scene
                 view.presentScene(scene)
             }
