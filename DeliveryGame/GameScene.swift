@@ -139,7 +139,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // MARK: - Private methods
 
     private func endGame() {
-        let result = timerCounter ?? 0
+        let result = timerCounter
         stopTimer()
         showWinMessage()
         DispatchQueue.main.asyncAfter(deadline: .now() + 4) { [weak self] in
@@ -231,7 +231,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     private func stopTimer() {
         timer.invalidate()
-        timerCounter = 0
     }
 
     @objc func roundTimerFired(_ timer: Timer) {
