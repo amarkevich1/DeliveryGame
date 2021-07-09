@@ -27,12 +27,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var moveVector = CGVector()
     private var rotateAngle: CGFloat = 0
     private let removingDelay: TimeInterval = 0.3
+    private let customersQuantity = 10
+
+    private var customers: [Customer] = []
     
     override func didMove(to view: SKView) {
         addCamera()
         addCircleControls()
-        addChild(deliveryman)
-        addChild(Customer(position: .zero))
+        spawnCustomers()
+        spawnDeliveryman()
         physicsWorld.contactDelegate = self
     }
     
@@ -98,6 +101,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             pizza?.removeFromParent(afterDelay: removingDelay)
             customer?.removeFromParent()
+
+            customers.removeAll{ $0.mainNode == customer! }
+            if customers.isEmpty {
+                print("EMPTY")
+            }
+
             addFallenCustomer(color: customer?.fillColor ?? .black,
                               position: customer?.position ?? .zero,
                               velocity: pizza?.physicsBody?.velocity ?? .zero)
@@ -154,6 +163,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let ragdoll = Ragdoll(color: color, position: position)
         ragdoll.mainNode.physicsBody?.velocity = velocity
         addChild(ragdoll)
+    }
+
+    private func spawnCustomers() {
+        for _ in 1...customersQuantity {
+            let customer = Customer(position: getRandomPosition())
+            addChild(customer)
+            customers.append(customer)
+        }
+    }
+
+    private func getRandomPosition() -> CGPoint {
+        let children = scene!.children.filter { $0.physicsBody == nil }
+        let child = children.randomElement()
+        let childFrame = child!.frame
+        return childFrame.randomPointInRect()
+    }
+
+    private func spawnDeliveryman() {
+        addChild(deliveryman)
     }
 
 }

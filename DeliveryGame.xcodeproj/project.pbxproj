@@ -24,6 +24,7 @@
 		59A4B08A2696F355005DB9F7 /* SKScene+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A4B0892696F355005DB9F7 /* SKScene+Extensions.swift */; };
 		59FFCD9126986052000B8940 /* SKNode+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59FFCD9026986052000B8940 /* SKNode+Extensions.swift */; };
 		5B5541D126987043004A6279 /* Slice_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B5541D026987043004A6279 /* Slice_logo.png */; };
+		5B5541D326987DF9004A6279 /* CGRect+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5541D226987DF9004A6279 /* CGRect+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		59A4B0892696F355005DB9F7 /* SKScene+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKScene+Extensions.swift"; sourceTree = "<group>"; };
 		59FFCD9026986052000B8940 /* SKNode+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKNode+Extensions.swift"; sourceTree = "<group>"; };
 		5B5541D026987043004A6279 /* Slice_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Slice_logo.png; sourceTree = "<group>"; };
+		5B5541D226987DF9004A6279 /* CGRect+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 				59A4B0892696F355005DB9F7 /* SKScene+Extensions.swift */,
 				5967F77F2697434F006C377F /* CGFloat+Extension.swift */,
 				59FFCD9026986052000B8940 /* SKNode+Extensions.swift */,
+				5B5541D226987DF9004A6279 /* CGRect+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -198,6 +201,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				59A4B0812696DF3E005DB9F7 /* CompositeNode.swift in Sources */,
+				5B5541D326987DF9004A6279 /* CGRect+Extensions.swift in Sources */,
 				5967F783269752B1006C377F /* Customer.swift in Sources */,
 				595856DE269721E200390645 /* CircleControl.swift in Sources */,
 				59A4B0152694C1FC005DB9F7 /* GameScene.swift in Sources */,
