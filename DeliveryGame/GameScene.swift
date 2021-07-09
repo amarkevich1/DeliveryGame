@@ -92,7 +92,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 pizza = contact.bodyB.node as? SKShapeNode
                 customer = contact.bodyA.node as? SKShapeNode
             }
-            pizza?.removeFromParent(afterDelay: removingDelay)
+            pizza?.fadeOutSlowDownAndRemoveFromParent(afterDelay: removingDelay)
             customer?.removeFromParent()
 
             customers.removeAll{ $0.mainNode == customer! }
@@ -105,9 +105,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                               velocity: pizza?.physicsBody?.velocity ?? .zero)
         } else if (contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask) == Category([.pizza, .border]).rawValue {
             if contact.bodyA.categoryBitMask == Category.pizza.rawValue {
-                contact.bodyA.node?.removeFromParent(afterDelay: removingDelay)
+                contact.bodyA.node?.fadeOutSlowDownAndRemoveFromParent(afterDelay: removingDelay)
             } else {
-                contact.bodyB.node?.removeFromParent(afterDelay: removingDelay)
+                contact.bodyB.node?.fadeOutSlowDownAndRemoveFromParent(afterDelay: removingDelay)
             }
         }
     }
