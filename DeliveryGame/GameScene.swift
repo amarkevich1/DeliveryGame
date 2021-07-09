@@ -35,7 +35,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var moveVector = CGVector()
     private var rotateAngle: CGFloat = 0
     private let removingDelay: TimeInterval = 0.3
-    private let customersQuantity = 1
+    private let customersQuantity = 10
     var endGameDelegate: GameViewControllerDelegate?
 
     private var customers: [Customer] = []
@@ -139,10 +139,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // MARK: - Private methods
 
     private func endGame() {
+        let result = timerCounter ?? 0
         stopTimer()
         showWinMessage()
         DispatchQueue.main.asyncAfter(deadline: .now() + 4) { [weak self] in
-            self?.endGameDelegate?.endGame(points: self?.timerCounter ?? 0)
+            self?.endGameDelegate?.endGame(points: result)
         }
     }
     
