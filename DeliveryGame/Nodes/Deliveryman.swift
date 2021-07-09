@@ -22,8 +22,8 @@ final class Deliveryman: CompositeNode {
         let bodySize = CGSize(width: Size.bodyWeight, height: Size.bodyHight)
         let body = SKShapeNode(rectOf: bodySize)
         body.position = position
-        body.fillColor = PersonAppearance.shirtColor
-        body.strokeColor = PersonAppearance.shirtColor
+        body.fillColor = #colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1)
+        body.strokeColor = #colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1)
         body.physicsBody = SKPhysicsBody(rectangleOf: bodySize)
         body.physicsBody?.allowsRotation = false
         mainNode = body
@@ -32,7 +32,7 @@ final class Deliveryman: CompositeNode {
         let head = SKShapeNode(circleOfRadius: Size.headRadius)
         head.position = CGPoint(x: 0, y: Size.bodyHight / 2)
         head.fillColor = PersonAppearance.skinTone
-        head.strokeColor = PersonAppearance.skinTone
+        head.strokeColor = head.fillColor
         head.zPosition = 1
         body.addChild(head)
 
